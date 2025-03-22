@@ -1,0 +1,87 @@
+{
+  "manifest_version": 3,
+  "name": "Cipher Extension",
+  "version": "1.0.0",
+  "description": "Buy, snipe & sell tokens on Solana using Cipher Extension with advanced AI trading and limit orders.",
+  "icons": {
+    "16": "./icon-dark-16.png",
+    "32": "./icon-dark-32.png",
+    "48": "./icon-dark-48.png",
+    "128": "./icon-dark-128.png"
+  },
+  "action": {
+    "default_popup": "index.html"
+  },
+  "permissions": ["tabs", "webNavigation", "activeTab", "storage", "alarms", "notifications"],
+  "host_permissions": [
+    "https://click.tradeoncipher.io/*",
+    "https://click2.tradeoncipher.io/*",
+    "https://api.tradeoncipher.io/*",
+    "https://photon-sol.tinyastro.io/*",
+    "https://bullx.io/*",
+    "https://backup.bullx.io/*",
+    "https://backup2.bullx.io/*",
+    "https://neo.bullx.io/*",
+    "https://neo-backup.bullx.io/*",
+    "https://legacy.bullx.io/*",
+    "https://gmgn.ai/*",
+    "https://axiom.trade/*",
+    "https://*.axiom.trade/*",
+    "https://x.com/*",
+    "https://pump.fun/*",
+    "https://discord.com/*",
+    "https://web.telegram.org/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://photon-sol.tinyastro.io/*"],
+      "js": ["src/photon.js", "src/utils.js", "src/ai-trading.js", "src/limit-orders.js", "src/pattern-recognition.js", "src/sentiment-analysis.js", "src/portfolio-manager.js"]
+    },
+    {
+      "matches": ["https://neo.bullx.io/*"],
+      "js": ["src/neobullx.js", "src/utils.js", "src/ai-trading.js", "src/limit-orders.js", "src/pattern-recognition.js", "src/sentiment-analysis.js", "src/portfolio-manager.js"]
+    },
+    {
+      "matches": ["https://legacy.bullx.io/*"],
+      "js": ["src/legacy-bullx.js", "src/utils.js", "src/ai-trading.js", "src/limit-orders.js", "src/pattern-recognition.js", "src/sentiment-analysis.js", "src/portfolio-manager.js"]
+    },
+    {
+      "matches": ["https://pump.fun/*"],
+      "js": ["src/pumpfun.js", "src/utils.js", "src/ai-trading.js", "src/limit-orders.js", "src/pattern-recognition.js", "src/sentiment-analysis.js", "src/portfolio-manager.js"]
+    },
+    {
+      "matches": [
+        "https://bullx.io/*",
+        "https://legacy.bullx.io/*",
+        "https://neo.bullx.io/*",
+        "https://neo-backup.bullx.io/*"
+      ],
+      "js": ["src/resolvers/bullx-resolver.js"]
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/index.js", "src/setIcon.js"]
+    }
+  ],
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "web_accessible_resources": [{
+    "resources": [
+      "./icon-light-16.png",
+      "./icon-light-32.png",
+      "./icon-light-48.png",
+      "./icon-light-128.png",
+      "./icon-dark-16.png",
+      "./icon-dark-32.png",
+      "./icon-dark-48.png",
+      "./icon-dark-128.png",
+      "src/ai-trading.js",
+      "src/limit-orders.js",
+      "src/pattern-recognition.js",
+      "src/sentiment-analysis.js",
+      "src/portfolio-manager.js"
+    ],
+    "matches": ["<all_urls>"]
+  }]
+}
